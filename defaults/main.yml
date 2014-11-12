@@ -1,0 +1,8 @@
+---
+APT_CACHE_VALID_TIME: 3600
+PLAYBOOK_PRIVATE_ROLE_ASSETS_PATH: "{{playbook_dir}}/assets/private/roles/"
+wordpress_assets_path: "{{PLAYBOOK_PRIVATE_ROLE_ASSETS_PATH}}wordpress/"
+other_sites: []
+# vhost_template: roles/wordpress/templates/wordpress-apache-site.j2
+# TODO: implement a generic template
+# wordpress_config_template: wp-config.php.j2

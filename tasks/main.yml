@@ -1,0 +1,5 @@
+---
+# file: kirjasampo/tasks/main.yml
+
+- include: install.yml
+- include: setup-wordpress-permissions.yml

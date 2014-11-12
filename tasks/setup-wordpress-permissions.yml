@@ -1,0 +1,25 @@
+---
+
+    - name: Create group for wordpress site developers
+      group: name=wpdevel state=present
+
+      # This is needed as long as WP is allowed update/etc. itself.
+    - name: set group membership for wpdevel
+      action: user name={{item}} groups=wpdevel append=yes
+      with_items:
+          - www-data
+
+    - name: Change wordpress site webroot directory permissions
+      action: file recurse=yes dest={{wordpress_webroot}} state=directory
+              owner=www-data group=wpdevel
+
+    - name: Change wordpress site .git directory permissions
+      action: file recurse=yes dest={{wordpress_site_dir}}/.git state=directory
+              owner=root group=wpdevel
+
+
+    - name: Set sticky bit for wpdevel group
+      shell: find {{wordpress_webroot}} -type d -exec chmod g+s {} \;
+
+    - name: Grant write permission for wpdevel group
+      shell: chmod -R g+w {{wordpress_webroot}}
