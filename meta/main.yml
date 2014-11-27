@@ -4,6 +4,6 @@ dependencies:
     apache_vhost_webroot: "{{wordpress_webroot}}"
     apache_vhost_robots_txt: "wordpress/templates/wordpress_robots.txt.j2"
     apache_vhost_other_sites: "{{other_sites}}"
-  - role: mysql_database
+  - role: ajsalminen.mysql_database
     mysql_database_details: "{{wordpress_db}}"
 allow_duplicates: yes
