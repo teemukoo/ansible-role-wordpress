@@ -1,8 +1,8 @@
 # {{ ansible_managed }}
 <VirtualHost *:80>
 {% include 'apache_servername.j2' %}
-{% if other_network_sites is defined %}
-{%    for network_site in other_network_sites %}
+{% if other_sites is defined %}
+{%    for network_site in other_sites %}
 {% if loop.first %}
         ServerAlias {{ network_site }}{% else %} {{network_site}}{% endif %}
 {%    endfor %}
