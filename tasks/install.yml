@@ -31,9 +31,3 @@
             - "{{wordpress_assets_path}}"
             - "../templates"
   when: wordpress_config_template is defined
-
-# for some reason this does not replace (manually running works)
-- name: Replace site name
-  debug: msg="wp --allow-root search-replace {{wordpress_db.site_name}} {{site_name}} chdir={{wordpress_webroot}}"
-  # shell: /usr/local/bin/wp --allow-root search-replace {{wordpress_db.site_name}} {{site_name}} chdir={{wordpress_webroot}}
-  when: wp_present.stat.exists == false and wordpress_db.site_name is defined and wordpress_db.site_name != site_name
