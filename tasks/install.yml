@@ -14,7 +14,7 @@
     repo: "{{synced_wordpress.repo}}"
     dest: "{{wordpress_site_dir}}"
     version: HEAD
-  when: synced_wordpress_sync|default(false)
+  when: synced_wordpress.repo is defined
 
 - name: Copy files in place
   synchronize: src={{wordpress_files}}/ dest={{wordpress_webroot}} delete=yes
