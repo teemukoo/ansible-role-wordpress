@@ -20,6 +20,15 @@
   synchronize: src={{wordpress_files}}/ dest={{wordpress_webroot}} delete=yes
   when: wp_present.stat.exists == false and wordpress_files is defined
 
+- name: Set wp_new_site_name (1)
+  set_fact:
+    defined_new_site_name: "{{ synced_wordpress.new_site_name }}"
+  when: synced_wordpress is defined and synced_wordpress.new_site_name is defined
+
+- name: Set wp_new_site_name (2)
+  set_fact:
+    wp_new_site_name: "{{ defined_new_site_name|default(wordpress_db.site_name|default(site_name)) ~ local_test_environment|default('') }}"
+
 - name: Install wp-config.php
   template:
     src={{item}}
