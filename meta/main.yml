@@ -4,7 +4,7 @@ dependencies:
     apache_vhost_webroot: "{{wordpress_webroot}}"
     apache_vhost_robots_txt: "ajsalminen.wordpress/templates/wordpress_robots.txt.j2"
     apache_vhost_other_sites: "{{other_sites}}"
-    rewrites: "{{ (apache_vhost_allowoverride == 'All')|ternary(None, wordpress_rewrites) }}"
+    rewrites: "{{ (apache_vhost_allowoverride == 'All')|ternary([], wordpress_rewrites)|union(wordpress_rewrites) }}"
   - role: ajsalminen.mysql_database
     mysql_database_details: "{{wordpress_db}}"
 allow_duplicates: yes

@@ -13,7 +13,7 @@
   git:
     repo: "{{synced_wordpress.repo}}"
     dest: "{{wordpress_site_dir}}"
-    version: HEAD
+    version: "{{ synced_wordpress.branch|default('master') }}"
   when: synced_wordpress.repo is defined
 
 - name: Copy files in place
