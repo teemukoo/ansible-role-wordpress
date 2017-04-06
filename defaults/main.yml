@@ -5,6 +5,8 @@ wordpress_assets_path: "{{PLAYBOOK_PRIVATE_ROLE_ASSETS_PATH}}wordpress/"
 other_sites: []
 wordpress_multisite: false
 apache_vhost_allowoverride: All
+wordpress_check_file: wp-settings.php
+wordpress_config_path: "{{ wordpress_webroot }}/wp-config.php"
 
 wordpress_rewrites_single:
   - RewriteRule ^index\.php$ - [L]

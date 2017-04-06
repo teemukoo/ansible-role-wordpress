@@ -6,7 +6,7 @@
     state=present
 
 - name: Check whether wp is installed
-  stat: path={{wordpress_webroot}}/wp-content
+  stat: path={{wordpress_webroot}}/{{ wordpress_check_file }}
   register: wp_present
 
 - name: Sync git repo for the site
@@ -15,6 +15,12 @@
     dest: "{{wordpress_site_dir}}"
     version: "{{ synced_wordpress.branch|default('master') }}"
   when: synced_wordpress.repo is defined
+
+- name: Install dependencies with Composer.
+  shell: >
+    composer install --prefer-source --no-interaction
+    chdir={{ wordpress_site_dir }}
+  when: wordpress_bedrock is defined
 
 - name: Copy files in place
   synchronize: src={{wordpress_files}}/ dest={{wordpress_webroot}} delete=yes
@@ -29,14 +35,15 @@
   set_fact:
     wp_new_site_name: "{{ defined_new_site_name|default(wordpress_db.site_name|default(site_name)) ~ local_test_environment|default('') }}"
 
-- name: Install wp-config.php
+- name: Install wordpress config file.
   template:
     src={{item}}
-    dest={{wordpress_webroot}}/wp-config.php
+    dest={{ wordpress_config_path }}
   with_first_found:
         - files:
             - "{{wordpress_config_template}}"
           paths:
             - "{{wordpress_assets_path}}"
             - "../templates"
+          skip: yes
   when: wordpress_config_template is defined
