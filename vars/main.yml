@@ -1,4 +1,3 @@
 ---
-wordpress_webroot: "{{sites_dir}}/{{site_name}}/www"
 wordpress_site_dir: "{{sites_dir}}/{{site_name}}"
 wordpress_server_admin_email: tekniikka@kirjastot.fi

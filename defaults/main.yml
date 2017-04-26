@@ -26,6 +26,8 @@ wordpress_rewrites_multisite:
 
 wordpress_base_rewrites: "{{ wordpress_multisite|ternary(wordpress_rewrites_multisite, wordpress_rewrites_single) }}"
 wordpress_rewrites: []
+wordpress_webroot: "{{sites_dir}}/{{site_name}}/www"
+
 # vhost_template: roles/wordpress/templates/wordpress-apache-site.j2
 # TODO: implement a generic template
 # wordpress_config_template: wp-config.php.j2
