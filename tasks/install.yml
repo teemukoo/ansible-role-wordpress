@@ -1,9 +1,13 @@
-- name: Install rsync
+- name: Install task requirements
   apt:
-    pkg=rsync
+    pkg={{item}}
     update_cache=yes
     cache_valid_time={{APT_CACHE_VALID_TIME}}
     state=present
+  with_items:
+    - rsync
+    - git
+    - subversion
 
 - name: Check whether wp is installed
   stat: path={{wordpress_webroot}}/{{ wordpress_check_file }}
