@@ -8,6 +8,7 @@
     - rsync
     - git
     - subversion
+    - unzip
 
 - name: Check whether wp is installed
   stat: path={{wordpress_webroot}}/{{ wordpress_check_file }}
