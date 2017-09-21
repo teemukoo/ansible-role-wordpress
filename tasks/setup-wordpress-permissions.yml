@@ -22,4 +22,8 @@
       shell: find {{wordpress_webroot}} -type d -exec chmod g+s {} \;
 
     - name: Grant write permission for wpdevel group
-      shell: chmod -R g+w {{wordpress_webroot}}
+      file:
+        path: "{{ wordpress_webroot }}"
+        state: directory
+        mode: "g+w"
+        recurse: yes
