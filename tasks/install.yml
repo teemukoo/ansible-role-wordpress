@@ -1,14 +1,13 @@
 - name: Install task requirements
   apt:
-    pkg={{item}}
-    update_cache=yes
-    cache_valid_time={{APT_CACHE_VALID_TIME}}
-    state=present
-  with_items:
-    - rsync
-    - git
-    - subversion
-    - unzip
+    update_cache: yes
+    cache_valid_time: "{{APT_CACHE_VALID_TIME}}"
+    state: present
+    name:
+      - rsync
+      - git
+      - subversion
+      - unzip
 
 - name: Check whether wp is installed
   stat: path={{wordpress_webroot}}/{{ wordpress_check_file }}
