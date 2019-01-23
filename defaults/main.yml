@@ -2,6 +2,7 @@
 APT_CACHE_VALID_TIME: 3600
 PLAYBOOK_PRIVATE_ROLE_ASSETS_PATH: "{{playbook_dir}}/assets/private/roles/"
 wordpress_assets_path: "{{PLAYBOOK_PRIVATE_ROLE_ASSETS_PATH}}wordpress/"
+wordpress_no_apache: False
 other_sites: []
 wordpress_multisite: false
 apache_vhost_allowoverride: All
