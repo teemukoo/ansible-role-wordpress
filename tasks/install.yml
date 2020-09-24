@@ -51,3 +51,9 @@
             - "../templates"
           skip: yes
   when: wordpress_config_template is defined
+
+- name: Install Wordfence WAF file
+  template:
+    src: wordfence-waf.php.j2
+    dest: "{{ wordfence_waf_path }}"
+  when: wordfence_waf_path is defined
